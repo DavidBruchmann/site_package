@@ -1,0 +1,97 @@
+page = PAGE
+page {
+	typeNum = 0
+
+	meta.keywords.field = keywords
+	meta.description.field = description
+	#meta.robots = noindex, nofollow
+
+	includeCSS {
+		bootstrap = //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+		bootstrap.external = 1
+		custom = EXT:site_package/Resources/Public/Css/website.css
+	}
+
+	includeJS {
+		jquery = //code.jquery.com/jquery-2.2.3.min.js
+		jquery.external = 1
+	}
+
+	includeJSFooter {
+		bootstrap = //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
+		bootstrap.external = 1
+		custom = EXT:site_package/Resources/Public/JavaScript/website.js
+	}
+}
+
+page.10 = FLUIDTEMPLATE
+page.10 {
+
+	layoutRootPath = EXT:site_package/Resources/Private/Layouts/
+	partialRootPath = EXT:site_package/Resources/Private/Partials/
+
+	variables {
+		content = CONTENT
+		content {
+			table = tt_content
+			select {
+				orderBy = sorting
+				where = colPos=0
+				languageField = sys_language_uid
+			}
+		}
+	}
+
+	file.stdWrap.cObject = CASE
+	file.stdWrap.cObject {
+		key.data = levelfield:-1, backend_layout_next_level, slide
+		key.override.field = backend_layout
+
+		# Set the default template
+		default = TEXT
+		default.value = EXT:site_package/Resources/Private/Templates/Content.html
+	}
+}
+
+lib.topmenu = HMENU
+lib.topmenu {
+	entryLevel = 0
+	1 = TMENU
+	1 {
+		expAll = 1
+		wrap = <ul class="nav navbar-nav">|</ul>
+		NO {
+			wrapItemAndSub = <li>|</li>
+		}
+		ACT = 1
+		ACT {
+			wrapItemAndSub = <li class="active">|</li>
+		}
+	}
+}
+
+lib.fluidContent {
+  templateRootPaths {
+    100 = EXT:site_package/Resources/Private/Templates
+  }
+  partialRootPaths {
+    100 = EXT:site_package/Resources/Private/Partials
+  }
+  layoutRootPaths {
+    100 = EXT:site_package/Resources/Private/Layouts
+  }
+}
+
+tt_content {
+    typo3_logo < lib.fluidContent
+    typo3_logo {
+        templateName = Typo3Logo.html
+#        dataProcessing {
+#            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+#            10 {
+#                references.fieldName = assets
+#            }
+#            20 = DanielGoerz\FluidStyledSlider\DataProcessing\FluidStyledSliderProcessor
+#        }
+    }
+}

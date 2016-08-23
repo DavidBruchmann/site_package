@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-07-21T00:00:00Z" product-name="site_package">
+		<header/>
+		<body>
+			<trans-unit id="wizard.title" xml:space="preserve">
+				<source>TYPO3 Logo</source>
+			</trans-unit>
+			<trans-unit id="wizard.description" xml:space="preserve">
+				<source>TYPO3 inspires people to share</source>
+			</trans-unit>
+			<trans-unit id="palette.general" xml:space="preserve">
+				<source>General</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
